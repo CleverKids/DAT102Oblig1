@@ -69,4 +69,9 @@ public class Film {
     public void setFilmselskap(String filmselskap) {
         this.filmselskap = filmselskap;
     }
+    
+    public String toString() {
+    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i året " +
+    	lanseringsaar + ",\n og ble produsert av " + produsent;
+    }
 }
