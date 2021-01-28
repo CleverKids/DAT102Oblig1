@@ -1,4 +1,4 @@
-package test;
+package oving2.film;
 
 public class Film {
 	private int filmnr;
