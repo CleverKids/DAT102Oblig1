@@ -1,54 +1,105 @@
 package oving2.film;
 
-public class Filmarkiv implements FILMarkivADT{
+public class Filmarkiv implements FILMarkivADT {
 	private Film[] filmer;
 	private int antall = 0;
-	
+	private final static int SL = 10;
+
+	public Filmarkiv() {
+		this(SL);
+	}
+
+	public Filmarkiv(int antall) {
+		filmer = new Film[antall];
+	}
+
 	@Override
 	public Film[] hentFilmTabell() {
-		// TODO Auto-generated method stub
-		return null;
+		return trimtab(filmer, antall);
 	}
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
 		if (antall == filmer.length) {
-			
+			Film[] nyfilmer = new Film[filmer.length * 2];
+			for (int i = 0; i < filmer.length; i++) {
+				nyfilmer[i] = filmer[i];
+			}
 		}
-		
+
 		filmer[antall] = nyFilm;
 		antall++;
 	}
 
 	@Override
 	public boolean slettFilm(int filmnr) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean slettet = false;
+
+		for (int i = 0; i < antall; i++) {
+			if (filmer[i].getFilmnr() == filmnr) {
+				antall--;
+				filmer[i] = filmer[antall];
+				filmer[antall] = null;
+				slettet = true;
+			}
+		}
+		return slettet;
 	}
 
 	@Override
 	public Film[] soekTittel(String delstreng) {
-		// TODO Auto-generated method stub
-		return null;
+		int antall = 0;
+		Film[] mTab = new Film[filmer.length];
+		for (int i = 0; i < filmer.length; i++) {
+			if (filmer[i].getTittel().toUpperCase().contains(delstreng.toUpperCase())) {
+				mTab[antall] = filmer[i];
+				antall++;
+			}
+		}
+		trimtab(mTab, antall);
+		return mTab;
 	}
 
 	@Override
 	public Film[] soekProdusent(String delstreng) {
-		// TODO Auto-generated method stub
-		return null;
+		int antall = 0;
+		Film[] mTab = new Film[filmer.length];
+		for (int i = 0; i < filmer.length; i++) {
+			if (filmer[i].getProdusent().toUpperCase().contains(delstreng.toUpperCase())) {
+				mTab[antall] = filmer[i];
+				antall++;
+			}
+		}
+		trimtab(mTab, antall);
+		return mTab;
 	}
 
 	@Override
 	public int antall(Sjanger Sjanger) {
-		// TODO Auto-generated method stub
-		return 0;
+		int antall = 0;
+		Film[] mTab = new Film[filmer.length];
+		for (int i = 0; i < filmer.length; i++) {
+			if (filmer[i].getSjanger().equals(Sjanger)) {
+				mTab[antall] = filmer[i];
+				antall++;
+			}
+		}
+		return antall;
 	}
 
 	@Override
 	public int antall() {
-		// TODO Auto-generated method stub
-		return 0;
+		return antall;
 	}
-	
+
+	private Film[] trimtab(Film[] tab, int n) {
+		Film[] filmtab2 = new Film[n];
+		int i = 0;
+		while (i < n) {
+			filmtab2[i] = tab[i];
+			i++;
+		}
+		return filmtab2;
+	}
 
 }
