@@ -43,24 +43,17 @@ public class Fil {
 			// 2 - BufferedReader
 			innfil = new BufferedReader(FilmarkivFil);
 			
+			/*
 			int linjer = 0;
 			while (innfil.readLine() != null) {
 				linjer++;
-			}
-			
-			// 3 - Leser den første posten som er antall info-poster
-			String linje = innfil.readLine();
-
-
-			
-			
-
+			*/
 
 			// 4 - Les postene, en hel post om gangen
 			String filmLinje = innfil.readLine();
 
-			//while (innfil.readLine() != null) {
-				for (int i = 0; i < linjer; i++) {
+			while (filmLinje != null) {
+				//for (int i = 0; i < linjer; i++) {
 				String[] felt = filmLinje.split(SKILLE);
 				// http://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split(java.lang.String,
 				// int)
@@ -77,17 +70,17 @@ public class Fil {
 				filmarkiv.leggTilFilm(f);
 
 				filmLinje = innfil.readLine();
-			}
+				}
 
 			// 4 - Lukk filen
 			innfil.close();
+			return filmarkiv;
 
-		} catch (IOException e) {
+			} catch (IOException e) {
 			System.out.println("Feil ved lesing av fil: " + e);
 			System.exit(2);
 		}
-		return filmarkiv;
-
+		
 	}
 
 	final String ANSATT_FIL = "ansatte.txt"; // parameter når vi lager metode

@@ -16,14 +16,6 @@ public class Filmarkiv implements FILMarkivADT {
 		filmer = new Film[antall];
 	}
 
-	public void trim(int plass) {
-		// test???
-		for (int i = plass; i < antall; i++) {
-			filmer[i] = filmer[i + 1];
-		}
-		antall--;
-	}
-
 	@Override
 	public void leggTilFilm(Film nyFilm) {
 		if (antall == filmer.length) {
@@ -45,7 +37,10 @@ public class Filmarkiv implements FILMarkivADT {
 
 		for (int i = 0; i < antall && !b; i++) {
 			if (filmer[i].getFilmnr() == filmnr) {
-				trim(i);
+				for (int n = i; n < antall; n++) {
+					filmer[n] = filmer[n + 1];
+				}
+				antall--;
 			}
 		}
 
@@ -62,7 +57,7 @@ public class Filmarkiv implements FILMarkivADT {
 		int[] index = new int[antall];
 
 		for (int i = 0; i < antall; i++) {
-			if (filmer[i].getTittel().contains(delstreng)) {
+			if (filmer[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
 				index[funnet] = i;
 				funnet++;
 			}
@@ -88,7 +83,7 @@ public class Filmarkiv implements FILMarkivADT {
 		int[] index = new int[antall];
 
 		for (int i = 0; i < antall; i++) {
-			if (filmer[i].getProdusent().contains(delstreng)) {
+			if (filmer[i].getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
 				index[funnet] = i;
 				funnet++;
 			}
