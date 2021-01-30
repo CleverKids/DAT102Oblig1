@@ -1,6 +1,7 @@
 package no.hvl.dat102.klient;
 
 import javax.swing.JOptionPane;
+
 import no.hvl.dat102.Tekstgrensesnitt;
 import no.hvl.dat102.adt.FILMarkivADT;
 public class Meny{
@@ -21,14 +22,44 @@ public class Meny{
 			+ " 3 for å søke etter tittel,"
 			+ " 4 for å finne filmene til ein produsent,"
 			+ " 5 for å vise sjanger informasjon."));
-	switch(brukervalg) {
-	case 1: Tekstgrensesnitt.lesFilm();
-	case 2: Tekstgrensesnitt.visFilm();
-	case 3: Tekstgrensesnitt.visFilm();
-	case 4: Tekstgrensesnitt.visFilm();
-	case 5: Tekstgrensesnitt.visFilm();
 	
+	
+	if (brukervalg == 1) {
+		Tekstgrensesnitt.lesFilm();
+	} else if (brukervalg == 2) {
+		
+		Tekstgrensesnitt.visFilm(Integer.parseInt(JOptionPane.showInputDialog("Skriv inn filmnummer")));
+	} else if (brukervalg == 3) {
+		String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein tittel");
+		tekstgr.skrivUtFilmDelstrengITittel(filmer,sokeord);
+		
+	} else if (brukervalg == 4) {
+		String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein produsent");
+		tekstgr.skrivUtFilmProdusent(filmer,sokeord);
+		
+	} else if (brukervalg == 5) {
+		String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein sjanger");
+		tekstgr.skrivUtStatistikk(filmer, sokeord);
+	} else {
+		JOptionPane.showMessageDialog(null, "Feil input");
 	}
+	
+	
+//	switch(brukervalg) {
+//	case 1: Tekstgrensesnitt.lesFilm();
+//	break;
+//	case 2:  int n =Integer.parseInt(JOptionPane.showInputDialog("Skriv inn filmnummer"));
+//		
+//		Tekstgrensesnitt.visFilm(n);
+//	break;
+//	case 3: Tekstgrensesnitt.visFilm();
+//	break;
+//	case 4: Tekstgrensesnitt.visFilm();
+//	break;
+//	case 5: Tekstgrensesnitt.visFilm();
+//	break;
+//	default: JOptionPane.showMessageDialog(null, "Feil input");
+//	}
 	
 	
 	

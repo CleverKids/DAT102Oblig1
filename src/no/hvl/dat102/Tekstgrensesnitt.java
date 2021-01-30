@@ -1,5 +1,6 @@
 package no.hvl.dat102;
 
+import no.hvl.dat102.adt.FILMarkivADT;
 import javax.swing.JOptionPane;
 public class Tekstgrensesnitt {
 
@@ -27,13 +28,27 @@ public class Tekstgrensesnitt {
 	 }
 	// vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
 	// endret input til metoden fra Film film til int nummer
-	 public void visFilm(int nummer){…}
+	//gjorde visfilm om til static for å fikse feil i meny classen for switch 2
+	 public static void visFilm(int nummer){
+		 
+		 
+	 
+	 
+	 }
 	// Skrive ut alle Filmer med en spesiell delstreng i tittelen
-	 public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng){…}
+	 public void skrivUtFilmDelstrengITittel(FILMarkivADT filma, String delstreng){
+		 
+	 }
 	// Skriver ut alle Filmer av en produsent / en gruppe
-	 public void skrivUtFilmProdusent(FilmarkivADT filma, String delstreng) {…}
+	 public void skrivUtFilmProdusent(FILMarkivADT filma, String delstreng) {
+		 
+	 
+	 }
 	// Skrive ut en enkel statistikk som inneholder antall Filmer totalt
 	// og hvor mange det er i hver sjanger
-	 public void skrivUtStatistikk(FilmarkivADT filma){…}
+	// endrer paremeter fra kunn filma til filma og String
+	 public void skrivUtStatistikk(FILMarkivADT filma, String sjang){
+		 
+	 }
 	//… Ev. andre metoder
 	}//class
