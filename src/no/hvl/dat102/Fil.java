@@ -74,13 +74,14 @@ public class Fil {
 
 			// 4 - Lukk filen
 			innfil.close();
-			return filmarkiv;
+			//return filmarkiv;
 
 			} catch (IOException e) {
 			System.out.println("Feil ved lesing av fil: " + e);
 			System.exit(2);
+			
 		}
-		
+		return filmarkiv;
 	}
 	
 	 public static void skrivTilFil(FILMarkivADT filmarkiv, String filnavn) {
