@@ -18,7 +18,7 @@ public class Fil {
 
 	public static FILMarkivADT lesFraFil(String filnanvn) {
 
-		FILMarkivADT filmarkiv;
+		FILMarkivADT filmarkiv = null;
 
 		final String SKILLE = "#"; // kan være parameter når vi lager metode
 
@@ -82,46 +82,49 @@ public class Fil {
 		}
 		
 	}
+	
+	 public static void skrivTilFil(FILMarkivADT filmarkiv, String filnavn) {
+	
+	 final String ARKIV_UTSKRIFT_FIL = filnavn + ".txt"; // parameter når vi lager metode
 
-	final String ANSATT_FIL = "ansatte.txt"; // parameter når vi lager metode
-
-	Ansatt anne = new Ansatt("Anne", "Dahl", 220, Ansatt.KVINNE);
-	Ansatt knut = new Ansatt("Knut", "Olsen", 180, Ansatt.MANN);
-	int antall = 2;
+	//Ansatt anne = new Ansatt("Anne", "Dahl", 220, Ansatt.KVINNE);
+	//Ansatt knut = new Ansatt("Knut", "Olsen", 180, Ansatt.MANN);
+	//int antall = 2;
 
 	try
 	{
 		// 1 - FileWriter
-		FileWriter ansFil = new FileWriter(ANSATT_FIL, false);
+		FileWriter utskriftFil = new FileWriter(ARKIV_UTSKRIFT_FIL, false);
 
 		// 2 - PrintWriter
-		PrintWriter utfil = new PrintWriter(ansFil);
+		PrintWriter utfil = new PrintWriter(utskriftFil);
 
 		// 3 - Skriver først ut antall ansatt-info-er på den første linjen
-		utfil.println(antall);
+		//
+		// kanskje ikkje nødvendig
+		//
+		//utfil.println(filmarkiv.antall());
 
 		// Hvis vi tar imot en tabell av ansatte, ville vi her lage en løkke der
 		// vi for hver ansatt henter ut feltvariable og skriver de ut på samme linje
-
+		Film[] filmTab = filmarkiv.hentFilmTabell();
+		for (int i=0;i<filmarkiv.antall();i++) {
 		// 3 - Skriv postene, felt for felt
-		utfil.print(anne.getFornavn());
+		utfil.print(filmTab[i].getFilmnr());
 		utfil.print(SKILLE);
-		utfil.print(anne.getEtternavn());
+		utfil.print(filmTab[i].getProdusent());
 		utfil.print(SKILLE);
-		utfil.print(anne.getTimeloenn());
+		utfil.print(filmTab[i].getTittel());
 		utfil.print(SKILLE);
-		utfil.print(anne.isKjoenn());
+		utfil.print(filmTab[i].getLanseringsaar());
+		utfil.print(SKILLE);
+		utfil.print(filmTab[i].getSjanger());
+		utfil.print(SKILLE);
+		utfil.print(filmTab[i].getFilmselskap());
 		utfil.println();
-
-		utfil.print(knut.getFornavn());
-		utfil.print(SKILLE);
-		utfil.print(knut.getEtternavn());
-		utfil.print(SKILLE);
-		utfil.print(knut.getTimeloenn());
-		utfil.print(SKILLE);
-		utfil.print(knut.isKjoenn());
-		utfil.println();
-
+		
+		
+		}
 		// 4 - Lukk filen
 		utfil.close();
 
@@ -132,5 +135,5 @@ public class Fil {
 		System.exit(3);
 	}
 }
-
 }
+
