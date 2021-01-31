@@ -14,11 +14,11 @@ import java.io.PrintWriter;
 
 public class Fil {
 
-	private static final String SKILLE = null;
+	private static final String SKILLE = "#";
 
 	public static FILMarkivADT lesFraFil(String filnanvn) {
 
-		FILMarkivADT filmarkiv = null;
+		FILMarkivADT filmarkiv = new Filmarkiv();
 
 		final String SKILLE = "#"; // kan være parameter når vi lager metode
 
@@ -94,11 +94,14 @@ public class Fil {
 
 	try
 	{
+		
 		// 1 - FileWriter
 		FileWriter utskriftFil = new FileWriter(ARKIV_UTSKRIFT_FIL, false);
 
 		// 2 - PrintWriter
 		PrintWriter utfil = new PrintWriter(utskriftFil);
+		
+		//PrintWriter utfil = new PrintWriter(ARKIV_UTSKRIFT_FIL);
 
 		// 3 - Skriver først ut antall ansatt-info-er på den første linjen
 		//

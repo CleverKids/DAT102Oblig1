@@ -10,6 +10,7 @@ public class KlientFilmarkiv {
 		FILMarkivADT filmer = new Filmarkiv();
 		
 		Meny meny = new Meny(filmer);
+		meny.start();
 	}
 
 }

@@ -14,6 +14,13 @@ public interface FILMarkivADT {
 	 * Legger til en ny film i arkivet
 	 * @param nyFilm
 	 */
+	
+	Film sokFilmNr(int sokNr);
+	//Lagt til for å håndtere søking etter filmnr
+		
+	
+	
+	
 	void leggTilFilm(Film nyFilm);
 	/**
 	 * Sletter film med gitt filmnr fra arkivet om det eksisterer
