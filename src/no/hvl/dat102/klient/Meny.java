@@ -29,7 +29,7 @@ public class Meny {
 
 		if (velgFil == 1) {
 			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");
-
+			/*
 			if (Fil.lesFraFil(filnavn) != null) {
 				int bekreft = Integer.parseInt(JOptionPane.showInputDialog(
 						"Fil finnes fra før av, skriv inn 1 for å erstatte eller 2 for å åpne eksisterende fil:"));
@@ -43,10 +43,10 @@ public class Meny {
 				}
 
 			} else {
-			
+			*/
 				Fil.skrivTilFil(filmer, filnavn);
 
-			}
+			//}
 
 		} else if (velgFil == 2) {
 			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");

@@ -1,6 +1,5 @@
 package no.hvl.dat102;
 
-import no.hvl.dat102.Film;
 import no.hvl.dat102.adt.FILMarkivADT;
 
 public class Filmarkiv implements FILMarkivADT {
