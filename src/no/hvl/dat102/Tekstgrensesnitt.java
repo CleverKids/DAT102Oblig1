@@ -44,24 +44,26 @@ public class Tekstgrensesnitt {
 	// Skrive ut alle Filmer med en spesiell delstreng i tittelen
 	public void skrivUtFilmDelstrengITittel(FILMarkivADT filma, String delstreng) {
 		Film[] sokResultater = filma.sokTittel(delstreng);
-		
-		for(int i = 0; i < sokResultater.length; i++) {
-		JOptionPane.showMessageDialog(null,
-		"Filmnr: " + sokResultater[i].getFilmnr() + "Produsent: " + sokResultater[i].getProdusent() + "Tittel: "
-				+ sokResultater[i].getTittel() +  "Lanseringsår: " + sokResultater[i].getLanseringsaar() + "Sjanger: "
-				+ sokResultater[i].getSjanger() + "Filmselskap: " + sokResultater[i].getFilmselskap() + "\n");
+
+		for (int i = 0; i < sokResultater.length; i++) {
+			JOptionPane.showMessageDialog(null,
+					"Filmnr: " + sokResultater[i].getFilmnr() + "Produsent: " + sokResultater[i].getProdusent()
+							+ "Tittel: " + sokResultater[i].getTittel() + "Lanseringsår: "
+							+ sokResultater[i].getLanseringsaar() + "Sjanger: " + sokResultater[i].getSjanger()
+							+ "Filmselskap: " + sokResultater[i].getFilmselskap() + "\n");
 		}
 	}
 
 	// Skriver ut alle Filmer av en produsent / en gruppe
 	public void skrivUtFilmProdusent(FILMarkivADT filma, String delstreng) {
 		Film[] sokResultater = filma.sokProdusent(delstreng);
-		
-		for(int i = 0; i < sokResultater.length; i++) {
-		JOptionPane.showMessageDialog(null,
-		"Filmnr: " + sokResultater[i].getFilmnr() + "Produsent: " + sokResultater[i].getProdusent() + "Tittel: "
-				+ sokResultater[i].getTittel() +  "Lanseringsår: " + sokResultater[i].getLanseringsaar() + "Sjanger: "
-				+ sokResultater[i].getSjanger() + "Filmselskap: " + sokResultater[i].getFilmselskap() + "\n");
+
+		for (int i = 0; i < sokResultater.length; i++) {
+			JOptionPane.showMessageDialog(null,
+					"Filmnr: " + sokResultater[i].getFilmnr() + "Produsent: " + sokResultater[i].getProdusent()
+							+ "Tittel: " + sokResultater[i].getTittel() + "Lanseringsår: "
+							+ sokResultater[i].getLanseringsaar() + "Sjanger: " + sokResultater[i].getSjanger()
+							+ "Filmselskap: " + sokResultater[i].getFilmselskap() + "\n");
 		}
 
 	}
@@ -72,22 +74,10 @@ public class Tekstgrensesnitt {
 	public void skrivUtStatistikk(FILMarkivADT filma, String sjang) {
 		int totaltAntall = filma.antall();
 		int antallSjanger = filma.antall(Sjanger.finnSjanger(sjang));
-		
-		JOptionPane.showMessageDialog(null, "Totalt antall filmer: " + totaltAntall + "\nAntall filmer innen " +  sjang + ": " + antallSjanger);
+
+		JOptionPane.showMessageDialog(null,
+				"Totalt antall filmer: " + totaltAntall + "\nAntall filmer innen " + sjang + ": " + antallSjanger);
 
 	}
 	// … Ev. andre metoder
 }// class
-
-
-
-
-
-
-
-
-
-
-
-
-

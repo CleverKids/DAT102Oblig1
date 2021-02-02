@@ -30,23 +30,20 @@ public class Meny {
 		if (velgFil == 1) {
 			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");
 			/*
-			if (Fil.lesFraFil(filnavn) != null) {
-				int bekreft = Integer.parseInt(JOptionPane.showInputDialog(
-						"Fil finnes fra før av, skriv inn 1 for å erstatte eller 2 for å åpne eksisterende fil:"));
+			 * if (Fil.lesFraFil(filnavn) != null) { int bekreft =
+			 * Integer.parseInt(JOptionPane.showInputDialog(
+			 * "Fil finnes fra før av, skriv inn 1 for å erstatte eller 2 for å åpne eksisterende fil:"
+			 * ));
+			 * 
+			 * if (bekreft == 1) { Fil.skrivTilFil(filmer, filnavn); } else if (bekreft ==
+			 * 2) { filmer = Fil.lesFraFil(filnavn); } else {
+			 * JOptionPane.showMessageDialog(null, "Feil input"); }
+			 * 
+			 * } else {
+			 */
+			Fil.skrivTilFil(filmer, filnavn);
 
-				if (bekreft == 1) {
-					Fil.skrivTilFil(filmer, filnavn);
-				} else if (bekreft == 2) {
-					filmer = Fil.lesFraFil(filnavn);
-				} else {
-					JOptionPane.showMessageDialog(null, "Feil input");
-				}
-
-			} else {
-			*/
-				Fil.skrivTilFil(filmer, filnavn);
-
-			//}
+			// }
 
 		} else if (velgFil == 2) {
 			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");

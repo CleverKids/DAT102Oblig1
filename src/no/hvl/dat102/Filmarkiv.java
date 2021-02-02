@@ -24,7 +24,7 @@ public class Filmarkiv implements FILMarkivADT {
 			if (filmer[i].getFilmnr() == sokNr) {
 				f = filmer[i];
 				b = true;
-				
+
 			}
 			i++;
 		}
@@ -33,7 +33,7 @@ public class Filmarkiv implements FILMarkivADT {
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-		
+
 		if (sokFilmNr(nyFilm.getFilmnr()) == null) {
 
 			if (antall == filmer.length) {
@@ -47,27 +47,20 @@ public class Filmarkiv implements FILMarkivADT {
 
 			filmer[antall] = nyFilm;
 			antall++;
-		}else {
-		//JOptionPane(showMessageDialog(null, "Film finnes allerede"));
-		System.out.print("Film allerede lagt til");
+		} else {
+			// JOptionPane(showMessageDialog(null, "Film finnes allerede"));
+			System.out.print("Film allerede lagt til");
 		}
-		
+
 		/*
-		if (antall == filmer.length) {
-			Film[] tempFilmer = filmer;
-			filmer = new Film[(int) (antall * 1.1)];
-
-			for (int i = 0; i < antall; i++) {
-				filmer[i] = tempFilmer[i];
-			}
-		}
-
-		filmer[antall] = nyFilm;
-		antall++;
-		*/
+		 * if (antall == filmer.length) { Film[] tempFilmer = filmer; filmer = new
+		 * Film[(int) (antall * 1.1)];
+		 * 
+		 * for (int i = 0; i < antall; i++) { filmer[i] = tempFilmer[i]; } }
+		 * 
+		 * filmer[antall] = nyFilm; antall++;
+		 */
 	}
-	
-	
 
 	@Override
 	public boolean slettFilm(int filmnr) {
