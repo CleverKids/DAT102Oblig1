@@ -1,6 +1,5 @@
 package no.hvl.dat102;
 
-import no.hvl.dat102.Film;
 import no.hvl.dat102.adt.FILMarkivADT;
 
 public class Filmarkiv implements FILMarkivADT {
@@ -9,39 +8,126 @@ public class Filmarkiv implements FILMarkivADT {
 	private final static int STANDARDLENGDE = 10;
 
 	public Filmarkiv() {
-		this(STANDARDLENGDE);
+		filmer = new Film[STANDARDLENGDE];
 	}
-	
+
 	public Filmarkiv(int antall) {
 		filmer = new Film[antall];
 	}
-	
+
+	public Film sokFilmNr(int sokNr) {
+		boolean b = false;
+		int i = 0;
+		Film f = null;
+
+		while (i < antall && !b && filmer[i] != null) {
+			if (filmer[i].getFilmnr() == sokNr) {
+				f = filmer[i];
+				b = true;
+
+			}
+			i++;
+		}
+		return f;
+	}
+
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-		if(antall == filmer.length) {
-			//Utvid tabellen metode
+
+		if (sokFilmNr(nyFilm.getFilmnr()) == null) {
+
+			if (antall == filmer.length) {
+				Film[] tempFilmer = filmer;
+				filmer = new Film[(int) (antall * 1.1)];
+
+				for (int i = 0; i < antall; i++) {
+					filmer[i] = tempFilmer[i];
+				}
+			}
+
+			filmer[antall] = nyFilm;
+			antall++;
+		} else {
+			// JOptionPane(showMessageDialog(null, "Film finnes allerede"));
+			System.out.print("Film allerede lagt til");
 		}
-		
-		filmer[antall] = nyFilm;
-		antall++;
+
+		/*
+		 * if (antall == filmer.length) { Film[] tempFilmer = filmer; filmer = new
+		 * Film[(int) (antall * 1.1)];
+		 * 
+		 * for (int i = 0; i < antall; i++) { filmer[i] = tempFilmer[i]; } }
+		 * 
+		 * filmer[antall] = nyFilm; antall++;
+		 */
 	}
 
 	@Override
 	public boolean slettFilm(int filmnr) {
-		// getFilmnr fra Film class?(står ingenting nevnt i oppgaven som jeg har sett)
-		return false;
+		boolean b = false;
+
+		for (int i = 0; i < antall && !b; i++) {
+			if (filmer[i].getFilmnr() == filmnr) {
+				for (int n = i; n < antall; n++) {
+					filmer[n] = filmer[n + 1];
+				}
+				antall--;
+			}
+		}
+
+		return b;
 	}
 
 	@Override
 	public Film[] sokTittel(String delstreng) {
 		// Må være full tabell
-		return null;
+
+		Film[] resultater;
+		int funnet = 0;
+
+		int[] index = new int[antall];
+
+		for (int i = 0; i < antall; i++) {
+			if (filmer[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
+				index[funnet] = i;
+				funnet++;
+			}
+
+		}
+
+		resultater = new Film[funnet];
+
+		for (int i = 0; i < funnet; i++) {
+			resultater[i] = filmer[index[i]];
+		}
+
+		return resultater;
 	}
 
 	@Override
 	public Film[] sokProdusent(String delstreng) {
 		// Må være full tabell
-		return null;
+
+		Film[] resultater;
+		int funnet = 0;
+
+		int[] index = new int[antall];
+
+		for (int i = 0; i < antall; i++) {
+			if (filmer[i].getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
+				index[funnet] = i;
+				funnet++;
+			}
+
+		}
+
+		resultater = new Film[funnet];
+
+		for (int i = 0; i < funnet; i++) {
+			resultater[i] = filmer[index[i]];
+		}
+
+		return resultater;
 	}
 
 	@Override
@@ -51,14 +137,27 @@ public class Filmarkiv implements FILMarkivADT {
 
 	@Override
 	public Film[] hentFilmTabell() {
-		// Må være full tabell
-		return null;
+		Film[] filmTab = new Film[antall];
+
+		for (int i = 0; i < antall; i++) {
+			filmTab[i] = filmer[i];
+		}
+
+		return filmTab;
 	}
 
 	@Override
 	public int antall(Sjanger sjanger) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int n = 0;
+
+		for (int i = 0; i < antall; i++) {
+			if (filmer[i].getSjanger().equals(sjanger)) {
+				n++;
+			}
+		}
+
+		return n;
 	}
 
 }
