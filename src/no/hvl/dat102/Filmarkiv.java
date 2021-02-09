@@ -26,7 +26,7 @@ public class Filmarkiv implements FILMarkivADT {
 	}
 	
 	public void utvidArkiv() {
-		Film[] utvidetArkiv = new Film[filmer.length * 2];
+		Film[] utvidetArkiv = new Film[(int)Math.ceil(1.1 * filmer.length)];
 		
 		for (int i = 0; i < antall; i++) {
 			utvidetArkiv[i] = filmer[i];
@@ -79,6 +79,22 @@ public class Filmarkiv implements FILMarkivADT {
 		}
 		
 		return trimmeTab(hjelpeTab, antallFilmer);
+	}
+	
+	public Film sokFilmNr(int sokNr) {
+		boolean b = false;
+		int i = 0;
+		Film f = null;
+
+		while (i < antall && !b && filmer[i] != null) {
+			if (filmer[i].getFilmnr() == sokNr) {
+				f = filmer[i];
+				b = true;
+
+			}
+			i++;
+		}
+		return f;
 	}
 
 	@Override

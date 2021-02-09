@@ -1,5 +1,7 @@
 package no.hvl.dat102;
 
+import javax.swing.JOptionPane;
+
 import no.hvl.dat102.adt.FILMarkivADT;
 
 public class Tekstgrensesnitt {
@@ -8,43 +10,45 @@ public class Tekstgrensesnitt {
 		Film[] filmer = filmarkiv.sokTittel(delstreng);
 		
 		for (Film f: filmer) {
-			System.out.println(f.toString());
-			System.out.println();
+			JOptionPane.showMessageDialog(null, f.toString());
 		}
 	}
 
 	public void skrivUtFilmProdusent(FILMarkivADT filmarkiv, String delstreng) {
 		Film[] filmer = filmarkiv.sokProdusent(delstreng);
-		
+		if(filmarkiv.antall() == 0) {
+			JOptionPane.showMessageDialog(null, "Filmarkiv er tomt!");
+		}
 		for (Film f: filmer) {
-			System.out.println(f.toString());
-			System.out.println();
+			JOptionPane.showMessageDialog(null, f.toString());
 		}
 	}
 	
 	public void skrivUtStatistikk(FILMarkivADT filmarkiv) {
-		System.out.println("Antall filmer i akrivet: " + filmarkiv.antall());
-		Sjanger[] sjangerTab = Sjanger.values();
-		for (int i = 0; i < Sjanger.values().length; i++) {
-			System.out.println("Antall filmer i sjangeren " + sjangerTab[i] + ": " + filmarkiv.antall(sjangerTab[i]));
+		String s = "Totalt antall filmer: " + filmarkiv.antall() + "\n";
+		for (Sjanger sjang: Sjanger.values()) {
+			s += "Antall filmer innen " + sjang + ": " + filmarkiv.antall(
+					sjang) + "\n";
+		}
+		 JOptionPane.showMessageDialog(null,s);
+	}
+
+	public Film lesFilm() {
+		Film f = new Film(Integer.parseInt(userInput("Filmnr: ")), userInput("Produsent: "), userInput("Tittel: "),
+					Integer.parseInt(userInput("Lanseringsaar: ")), userInput("Sjanger: "), userInput("Filmselskap: "));
+		
+		return f;
+	}
+
+	public void visFilm(Film f) {
+		if(f == null) {
+			JOptionPane.showMessageDialog(null, "Film ikke funnet");
+		}else {
+			JOptionPane.showMessageDialog(null, f.toString());
 		}
 	}
 	
-	//bare for testing, må ha static over for å funke.
-	/*
-	public static void main(String[] args) {
-		FILMarkivADT filmarkiv = new Filmarkiv();
-		Film f1 = new Film(1, "bert", "hairy pooter", 1990, "drama", "shittyMovies");
-		Film f2 = new Film(2, "bob", "hairy pooter2", 1992, "action", "shittyMovies2");
-		Film f3 = new Film(3, "bob", "hairy pooter3", 1996, "history", "shittyMovies3");
-		
-		filmarkiv.leggTilFilm(f1);
-		filmarkiv.leggTilFilm(f2);
-		filmarkiv.leggTilFilm(f3);
-		
-		skrivUtFilmDelstrengITittel(filmarkiv, "hairy pooter");
-		skrivUtFilmProdusent(filmarkiv, "bob");
-		skrivUtStatistikk(filmarkiv);
+	public String userInput(String msg) {
+		return JOptionPane.showInputDialog(msg);
 	}
-	*/
 }
