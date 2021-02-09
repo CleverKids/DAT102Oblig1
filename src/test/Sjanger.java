@@ -1,7 +1,7 @@
-package no.hvl.dat102;
+package test;
 
 public enum Sjanger {
-	ACTION, DRAMA, HISTORY, SCIFI;
+	Action, Drama, Komedie, Fantasi, Scifi;
 
 	public static Sjanger finnSjanger(String navn) {
 		Sjanger sjang = null;
@@ -10,9 +10,8 @@ public enum Sjanger {
 				sjang = sj;
 				break;
 			}
-
 		}
 		return sjang;
-
 	}
+
 }

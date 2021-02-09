@@ -8,21 +8,49 @@ public class Filmarkiv implements FILMarkivADT {
 	private final static int STANDARDLENGDE = 10;
 
 	public Filmarkiv() {
-		this(STANDARDLENGDE);
+		filmer = new Film[STANDARDLENGDE];
 	}
-	
+
 	public Filmarkiv(int antall) {
 		filmer = new Film[antall];
 	}
-	
+
+	public Film sokFilmNr(int sokNr) {
+		boolean b = false;
+		int i = 0;
+		Film f = null;
+
+		while (i < antall && !b && filmer[i] != null) {
+			if (filmer[i].getFilmnr() == sokNr) {
+				f = filmer[i];
+				b = true;
+
+			}
+			i++;
+		}
+		return f;
+	}
+
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-		if(antall == filmer.length) {
-			utvidArkiv();
+		if (sokFilmNr(nyFilm.getFilmnr()) == null) {
+
+			if (antall == filmer.length) {
+				Film[] tempFilmer = filmer;
+				filmer = new Film[(int) (antall * 1.1)];
+
+				for (int i = 0; i < antall; i++) {
+					filmer[i] = tempFilmer[i];
+				}
+			}
+
+			filmer[antall] = nyFilm;
+			antall++;
+		} else {
+			// JOptionPane(showMessageDialog(null, "Film finnes allerede"));
+			System.out.print("Film allerede lagt til");
 		}
-		
-		filmer[antall] = nyFilm;
-		antall++;
+      
 	}
 	
 	public void utvidArkiv() {
@@ -39,7 +67,7 @@ public class Filmarkiv implements FILMarkivADT {
 	public boolean slettFilm(int filmnr) {
 		boolean slettet = false;
 		
-		for (int i = 0; i < antall; i++) {
+		for (int i = 0; i < antall && !slettet; i++) {
 			if (filmer[i].getFilmnr() == filmnr) {
 				antall--;
 				filmer[i] = filmer[antall];
@@ -49,6 +77,7 @@ public class Filmarkiv implements FILMarkivADT {
 		}
 		
 		return slettet;
+
 	}
 
 	@Override
@@ -79,22 +108,6 @@ public class Filmarkiv implements FILMarkivADT {
 		}
 		
 		return trimmeTab(hjelpeTab, antallFilmer);
-	}
-	
-	public Film sokFilmNr(int sokNr) {
-		boolean b = false;
-		int i = 0;
-		Film f = null;
-
-		while (i < antall && !b && filmer[i] != null) {
-			if (filmer[i].getFilmnr() == sokNr) {
-				f = filmer[i];
-				b = true;
-
-			}
-			i++;
-		}
-		return f;
 	}
 
 	@Override

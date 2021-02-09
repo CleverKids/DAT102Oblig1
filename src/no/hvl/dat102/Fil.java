@@ -20,6 +20,7 @@ public class Fil {
 
 		FILMarkivADT filmarkiv = new Filmarkiv();
 
+ Oblig_Inn1_DAT102
 		FileReader FilmarkivFil = null;
 		BufferedReader innfil = null;
 		String filmfil = filnanvn + ".txt";
@@ -46,6 +47,7 @@ public class Fil {
 			}
 
 			innfil.close();
+ 
 
 		} catch (IOException e) {
 			System.out.println("Feil ved lesing av fil: " + e);
@@ -57,6 +59,7 @@ public class Fil {
 
 	public static void skrivTilFil(FILMarkivADT filmarkiv, String filnavn) {
 
+ Oblig_Inn1_DAT102
 		final String ARKIV_UTSKRIFT_FIL = filnavn + ".txt"; 
 
 		try {
