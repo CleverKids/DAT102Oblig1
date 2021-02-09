@@ -36,18 +36,12 @@ public class Filmarkiv implements FILMarkivADT {
 		if (sokFilmNr(nyFilm.getFilmnr()) == null) {
 
 			if (antall == filmer.length) {
-				Film[] tempFilmer = filmer;
-				filmer = new Film[(int) (antall * 1.1)];
-
-				for (int i = 0; i < antall; i++) {
-					filmer[i] = tempFilmer[i];
-				}
+				utvidArkiv();
 			}
 
 			filmer[antall] = nyFilm;
 			antall++;
 		} else {
-			// JOptionPane(showMessageDialog(null, "Film finnes allerede"));
 			System.out.print("Film allerede lagt til");
 		}
       

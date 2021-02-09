@@ -17,10 +17,6 @@ public interface FILMarkivADT {
 	 * 
 	 * @param nyFilm
 	 */
-
-	Film sokFilmNr(int sokNr);
-	// Lagt til for å håndtere søking etter filmnr
-
 	void leggTilFilm(Film nyFilm);
 
 	/**

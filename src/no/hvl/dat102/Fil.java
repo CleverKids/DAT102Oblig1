@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.Arrays;
 
 import no.hvl.dat102.adt.FILMarkivADT;
 
@@ -20,7 +18,6 @@ public class Fil {
 
 		FILMarkivADT filmarkiv = new Filmarkiv();
 
- Oblig_Inn1_DAT102
 		FileReader FilmarkivFil = null;
 		BufferedReader innfil = null;
 		String filmfil = filnanvn + ".txt";
@@ -59,7 +56,6 @@ public class Fil {
 
 	public static void skrivTilFil(FILMarkivADT filmarkiv, String filnavn) {
 
- Oblig_Inn1_DAT102
 		final String ARKIV_UTSKRIFT_FIL = filnavn + ".txt"; 
 
 		try {

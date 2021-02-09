@@ -2,7 +2,6 @@ package no.hvl.dat102.klient;
 
 import javax.swing.JOptionPane;
 
-import no.hvl.dat102.Film;
 import no.hvl.dat102.Filmarkiv;
 import no.hvl.dat102.Tekstgrensesnitt;
 import no.hvl.dat102.adt.FILMarkivADT;
