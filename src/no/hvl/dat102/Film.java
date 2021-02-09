@@ -23,50 +23,56 @@ public class Film {
 	}
 
 	public int getFilmnr() {
-		return filmnr;
-	}
+        return filmnr;
+    }
+    
+    public void setFilmnr(int filmnr) {
+        this.filmnr = filmnr;
+    }
+    
+    public String getProdusent() {
+        return produsent;
+    }
+    
+    public void setProdusent(String produsent) {
+        this.produsent = produsent;
+    }
+    
+    public String getTittel() {
+        return tittel;
+    }
+    
+    public void setTittel(String tittel) {
+        this.tittel = tittel;
+    }
+    
+    public int getLanseringsaar() {
+    	return lanseringsaar;
+    }
+    
+    public void setLanseringsaar(int lanseringsaar) {
+    	this.lanseringsaar = lanseringsaar;
+    }
+    
+    public Sjanger getSjanger() {
+    	return sjanger;
+    }
+    
+    public void setSjanger(String sjanger) {
+    	this.sjanger = Sjanger.finnSjanger(sjanger);
+    }
+    
+    public String getFilmselskap() {
+        return filmselskap;
+    }
+    
+    public void setFilmselskap(String filmselskap) {
+        this.filmselskap = filmselskap;
+    }
+    
+    public String toString() {
+    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i �ret " +
+    	lanseringsaar + ",\n og ble produsert av " + produsent;
+    }
 
-	public void setFilmnr(int filmnr) {
-		this.filmnr = filmnr;
-	}
-
-	public String getProdusent() {
-		return produsent;
-	}
-
-	public void setProdusent(String produsent) {
-		this.produsent = produsent;
-	}
-
-	public String getTittel() {
-		return tittel;
-	}
-
-	public void setTittel(String tittel) {
-		this.tittel = tittel;
-	}
-
-	public int getLanseringsaar() {
-		return lanseringsaar;
-	}
-
-	public void setLanseringsaar(int lanseringsaar) {
-		this.lanseringsaar = lanseringsaar;
-	}
-
-	public Sjanger getSjanger() {
-		return sjanger;
-	}
-
-	public void setSjanger(String sjanger) {
-		this.sjanger = Sjanger.finnSjanger(sjanger);
-	}
-
-	public String getFilmselskap() {
-		return filmselskap;
-	}
-
-	public void setFilmselskap(String filmselskap) {
-		this.filmselskap = filmselskap;
-	}
 }

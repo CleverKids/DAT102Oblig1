@@ -12,5 +12,4 @@ public class KlientFilmarkiv {
 		Meny meny = new Meny(filmer);
 		meny.start();
 	}
-
 }

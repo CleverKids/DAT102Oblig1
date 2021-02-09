@@ -13,6 +13,8 @@ public class Meny {
 	private Tekstgrensesnitt tekstgr;
 	private FILMarkivADT filmer;
 
+	private String filnavn = null;
+
 	public Meny(FILMarkivADT filmer) {
 		tekstgr = new Tekstgrensesnitt();
 		this.filmer = filmer;
@@ -20,85 +22,52 @@ public class Meny {
 
 	public void start() {
 
-		String filnavn = null;
+		int velgFil = Integer.parseInt(
+				tekstgr.userInput("Skriv inn 1 for Ã¥ opprette en ny fil, eller 2 for Ã¥ velge en fil som finnes fra fÃ¸r av"));
 
-		int velgFil;
+		newOrOldArchive(velgFil);
 
-		velgFil = Integer.parseInt(JOptionPane.showInputDialog(
-				"Skriv inn 1 for å opprette en ny fil, eller 2 for å velge en fil som finnes fra før av"));
+		int brukervalg = Integer.parseInt(tekstgr.userInput("1 - Legg til film \n2 - Vis informasjon om film "
+				+ "\n3 - SÃ¸k etter tittel \n4 - Filmer av produsent \n5 - Sjanger informasjon"));
 
-		if (velgFil == 1) {
-			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");
-			/*
-			 * if (Fil.lesFraFil(filnavn) != null) { int bekreft =
-			 * Integer.parseInt(JOptionPane.showInputDialog(
-			 * "Fil finnes fra før av, skriv inn 1 for å erstatte eller 2 for å åpne eksisterende fil:"
-			 * ));
-			 * 
-			 * if (bekreft == 1) { Fil.skrivTilFil(filmer, filnavn); } else if (bekreft ==
-			 * 2) { filmer = Fil.lesFraFil(filnavn); } else {
-			 * JOptionPane.showMessageDialog(null, "Feil input"); }
-			 * 
-			 * } else {
-			 */
-			Fil.skrivTilFil(filmer, filnavn);
+		userChoice(brukervalg);
+	}
 
-			// }
+	public void newOrOldArchive(int velgFil) {
 
-		} else if (velgFil == 2) {
-			filnavn = JOptionPane.showInputDialog("Skriv filnavn: ");
-			filmer = Fil.lesFraFil(filnavn);
-		} else {
+		switch (velgFil) {
+		case 1:
+			Fil.skrivTilFil(filmer, filnavn = tekstgr.userInput("Skriv filnavn: "));
+			break;
+		case 2:
+			filmer = Fil.lesFraFil(filnavn = tekstgr.userInput("Skriv filnavn: "));
+			break;
+		default:
 			JOptionPane.showMessageDialog(null, "Feil input");
 		}
-
-		int brukervalg;
-
-		brukervalg = Integer.parseInt(JOptionPane.showInputDialog("Skriv inn: 1 for å legge til ein film,"
-				+ " 2 for å vise informasjon om ein film," + " 3 for å søke etter tittel,"
-				+ " 4 for å finne filmene til ein produsent," + " 5 for å vise sjanger informasjon."));
-
-		if (brukervalg == 1) {
-			Film f = tekstgr.lesFilm();
-			filmer.leggTilFilm(f);
-
+	}
+	
+	public void userChoice(int brukervalg) {
+		
+		switch (brukervalg) {
+		case 1:
+			filmer.leggTilFilm(tekstgr.lesFilm());
 			Fil.skrivTilFil(filmer, filnavn);
-
-		} else if (brukervalg == 2) {
-
-			Film f = filmer.sokFilmNr(Integer.parseInt(JOptionPane.showInputDialog("Skriv inn filmnummer")));
-			tekstgr.visFilm(f);
-
-		} else if (brukervalg == 3) {
-			String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein tittel");
-			tekstgr.skrivUtFilmDelstrengITittel(filmer, sokeord);
-
-		} else if (brukervalg == 4) {
-			String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein produsent");
-			tekstgr.skrivUtFilmProdusent(filmer, sokeord);
-
-		} else if (brukervalg == 5) {
-			String sokeord = JOptionPane.showInputDialog("Skriv inn sokeord på ein sjanger");
-			tekstgr.skrivUtStatistikk(filmer, sokeord);
-		} else {
+			break;
+		case 2:
+			tekstgr.visFilm(((Filmarkiv) filmer).sokFilmNr(Integer.parseInt(tekstgr.userInput("Skriv inn filmnummer: "))));
+			break;
+		case 3:
+			tekstgr.skrivUtFilmDelstrengITittel(filmer, tekstgr.userInput("Skriv inn sokeord for tittel: "));
+			break;
+		case 4:
+			tekstgr.skrivUtFilmProdusent(filmer, tekstgr.userInput("Skriv inn sokerord for produsent: "));
+			break;
+		case 5: 
+			tekstgr.skrivUtStatistikk(filmer);
+			break;
+		default:
 			JOptionPane.showMessageDialog(null, "Feil input");
 		}
-
-//	switch(brukervalg) {
-//	case 1: Tekstgrensesnitt.lesFilm();
-//	break;
-//	case 2:  int n =Integer.parseInt(JOptionPane.showInputDialog("Skriv inn filmnummer"));
-//		
-//		Tekstgrensesnitt.visFilm(n);
-//	break;
-//	case 3: Tekstgrensesnitt.visFilm();
-//	break;
-//	case 4: Tekstgrensesnitt.visFilm();
-//	break;
-//	case 5: Tekstgrensesnitt.visFilm();
-//	break;
-//	default: JOptionPane.showMessageDialog(null, "Feil input");
-//	}
-
 	}
 }

@@ -20,59 +20,34 @@ public class Fil {
 
 		FILMarkivADT filmarkiv = new Filmarkiv();
 
-		final String SKILLE = "#"; // kan være parameter når vi lager metode
-
+ Oblig_Inn1_DAT102
 		FileReader FilmarkivFil = null;
 		BufferedReader innfil = null;
-		String FILM_FIL = filnanvn + ".txt";
+		String filmfil = filnanvn + ".txt";
 
 		try {
-			// // 1 - FileReader
-			FilmarkivFil = new FileReader(FILM_FIL);
+			FilmarkivFil = new FileReader(filmfil);
 		}
 
 		catch (FileNotFoundException unntak) {
-			System.out.println("Finner ikke filen " + FILM_FIL);
+			System.out.println("Finner ikke filen " + filmfil);
 			System.exit(1);
-			// Vi kan lage script som kjører programmet fra kommandolinjen
-			// og fanger opp returkoden ved System.exit
-			//
 		}
 
 		try {
-			// 2 - BufferedReader
 			innfil = new BufferedReader(FilmarkivFil);
 
-			/*
-			 * int linjer = 0; while (innfil.readLine() != null) { linjer++;
-			 */
-
-			// 4 - Les postene, en hel post om gangen
 			String filmLinje = innfil.readLine();
 
 			while (filmLinje != null) {
-				// for (int i = 0; i < linjer; i++) {
 				String[] felt = filmLinje.split(SKILLE);
-				// http://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split(java.lang.String,
-				// int)
-
-				int filmnr = Integer.parseInt(felt[0]);
-				String produsent = felt[1];
-				String tittel = felt[2];
-				int lanseringsaar = Integer.parseInt(felt[3]);
-				String sjanger = felt[4];
-				String filmselskap = felt[5];
-
-				Film f = new Film(filmnr, produsent, tittel, lanseringsaar, sjanger, filmselskap);
-
+				Film f = new Film(Integer.parseInt(felt[0]), felt[1], felt[2], Integer.parseInt(felt[3]), felt[4], felt[5]);
 				filmarkiv.leggTilFilm(f);
-
 				filmLinje = innfil.readLine();
 			}
 
-			// 4 - Lukk filen
 			innfil.close();
-			// return filmarkiv;
+ 
 
 		} catch (IOException e) {
 			System.out.println("Feil ved lesing av fil: " + e);
@@ -84,48 +59,24 @@ public class Fil {
 
 	public static void skrivTilFil(FILMarkivADT filmarkiv, String filnavn) {
 
-		final String ARKIV_UTSKRIFT_FIL = filnavn + ".txt"; // parameter når vi lager metode
-
-		// Ansatt anne = new Ansatt("Anne", "Dahl", 220, Ansatt.KVINNE);
-		// Ansatt knut = new Ansatt("Knut", "Olsen", 180, Ansatt.MANN);
-		// int antall = 2;
+ Oblig_Inn1_DAT102
+		final String ARKIV_UTSKRIFT_FIL = filnavn + ".txt"; 
 
 		try {
-
-			// 1 - FileWriter
 			FileWriter utskriftFil = new FileWriter(ARKIV_UTSKRIFT_FIL, false);
-
-			// 2 - PrintWriter
 			PrintWriter utfil = new PrintWriter(utskriftFil);
 
-			// PrintWriter utfil = new PrintWriter(ARKIV_UTSKRIFT_FIL);
-
-			// 3 - Skriver først ut antall ansatt-info-er på den første linjen
-			//
-			// kanskje ikkje nødvendig
-			//
-			// utfil.println(filmarkiv.antall());
-
-			// Hvis vi tar imot en tabell av ansatte, ville vi her lage en løkke der
-			// vi for hver ansatt henter ut feltvariable og skriver de ut på samme linje
 			Film[] filmTab = filmarkiv.hentFilmTabell();
 			for (int i = 0; i < filmarkiv.antall(); i++) {
-				// 3 - Skriv postene, felt for felt
-				utfil.print(filmTab[i].getFilmnr());
-				utfil.print(SKILLE);
-				utfil.print(filmTab[i].getProdusent());
-				utfil.print(SKILLE);
-				utfil.print(filmTab[i].getTittel());
-				utfil.print(SKILLE);
-				utfil.print(filmTab[i].getLanseringsaar());
-				utfil.print(SKILLE);
-				utfil.print(filmTab[i].getSjanger());
-				utfil.print(SKILLE);
+				utfil.print(filmTab[i].getFilmnr() + SKILLE);
+				utfil.print(filmTab[i].getProdusent() + SKILLE);
+				utfil.print(filmTab[i].getTittel() + SKILLE);
+				utfil.print(filmTab[i].getLanseringsaar() + SKILLE);
+				utfil.print(filmTab[i].getSjanger() + SKILLE);
 				utfil.print(filmTab[i].getFilmselskap());
 				utfil.println();
-
 			}
-			// 4 - Lukk filen
+			
 			utfil.close();
 
 		} catch (IOException e) {

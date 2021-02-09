@@ -33,7 +33,6 @@ public class Filmarkiv implements FILMarkivADT {
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-
 		if (sokFilmNr(nyFilm.getFilmnr()) == null) {
 
 			if (antall == filmer.length) {
@@ -51,83 +50,64 @@ public class Filmarkiv implements FILMarkivADT {
 			// JOptionPane(showMessageDialog(null, "Film finnes allerede"));
 			System.out.print("Film allerede lagt til");
 		}
-
-		/*
-		 * if (antall == filmer.length) { Film[] tempFilmer = filmer; filmer = new
-		 * Film[(int) (antall * 1.1)];
-		 * 
-		 * for (int i = 0; i < antall; i++) { filmer[i] = tempFilmer[i]; } }
-		 * 
-		 * filmer[antall] = nyFilm; antall++;
-		 */
+      
+	}
+	
+	public void utvidArkiv() {
+		Film[] utvidetArkiv = new Film[(int)Math.ceil(1.1 * filmer.length)];
+		
+		for (int i = 0; i < antall; i++) {
+			utvidetArkiv[i] = filmer[i];
+		}
+		
+		filmer = utvidetArkiv;
 	}
 
 	@Override
 	public boolean slettFilm(int filmnr) {
-		boolean b = false;
-
-		for (int i = 0; i < antall && !b; i++) {
+		boolean slettet = false;
+		
+		for (int i = 0; i < antall && !slettet; i++) {
 			if (filmer[i].getFilmnr() == filmnr) {
-				for (int n = i; n < antall; n++) {
-					filmer[n] = filmer[n + 1];
-				}
 				antall--;
+				filmer[i] = filmer[antall];
+				filmer[antall] = null;
+				slettet = true;
 			}
 		}
+		
+		return slettet;
 
-		return b;
 	}
 
 	@Override
 	public Film[] sokTittel(String delstreng) {
-		// Må være full tabell
-
-		Film[] resultater;
-		int funnet = 0;
-
-		int[] index = new int[antall];
-
+		int antallFilmer = 0;
+		Film[] hjelpeTab = new Film[filmer.length];
+		
 		for (int i = 0; i < antall; i++) {
-			if (filmer[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
-				index[funnet] = i;
-				funnet++;
+			if (filmer[i].getTittel().toUpperCase().contains(delstreng.toUpperCase())) {
+				hjelpeTab[antallFilmer] = filmer[i];
+				antallFilmer++;
 			}
-
 		}
-
-		resultater = new Film[funnet];
-
-		for (int i = 0; i < funnet; i++) {
-			resultater[i] = filmer[index[i]];
-		}
-
-		return resultater;
+		
+		return trimmeTab(hjelpeTab, antallFilmer);
 	}
 
 	@Override
 	public Film[] sokProdusent(String delstreng) {
-		// Må være full tabell
-
-		Film[] resultater;
-		int funnet = 0;
-
-		int[] index = new int[antall];
-
+		int antallFilmer = 0;
+		Film[] hjelpeTab = new Film[filmer.length];
+		
 		for (int i = 0; i < antall; i++) {
-			if (filmer[i].getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
-				index[funnet] = i;
-				funnet++;
+			if (filmer[i].getProdusent().toUpperCase().contains(delstreng.toUpperCase())) {
+				hjelpeTab[antallFilmer] = filmer[i];
+				antallFilmer++;
 			}
-
 		}
-
-		resultater = new Film[funnet];
-
-		for (int i = 0; i < funnet; i++) {
-			resultater[i] = filmer[index[i]];
-		}
-
-		return resultater;
+		
+		return trimmeTab(hjelpeTab, antallFilmer);
 	}
 
 	@Override
@@ -137,27 +117,29 @@ public class Filmarkiv implements FILMarkivADT {
 
 	@Override
 	public Film[] hentFilmTabell() {
-		Film[] filmTab = new Film[antall];
-
-		for (int i = 0; i < antall; i++) {
-			filmTab[i] = filmer[i];
-		}
-
-		return filmTab;
+		return trimmeTab(filmer, antall);
 	}
 
 	@Override
 	public int antall(Sjanger sjanger) {
-
-		int n = 0;
-
-		for (int i = 0; i < antall; i++) {
+		int antallFilmer = 0;
+		
+		for(int i = 0; i < antall; i++) {
 			if (filmer[i].getSjanger().equals(sjanger)) {
-				n++;
+				antallFilmer++;
 			}
 		}
-
-		return n;
+		
+		return antallFilmer;
 	}
-
+	
+	public Film[] trimmeTab(Film[] filmTab, int antallFilmer) {
+		Film[] nyTab = new Film[antallFilmer];
+		
+		for(int i = 0; i < antallFilmer; i++) {
+			nyTab[i] = filmTab[i];
+		}
+		
+		return nyTab;
+	}
 }
