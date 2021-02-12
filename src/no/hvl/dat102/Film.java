@@ -71,7 +71,7 @@ public class Film {
     }
     
     public String toString() {
-    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i ï¿½ret " +
+    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i året " +
     	lanseringsaar + ",\n og ble produsert av " + produsent;
     }
 
