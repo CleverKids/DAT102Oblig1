@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.Arrays;
 
 import no.hvl.dat102.adt.FILMarkivADT;
 
@@ -46,6 +44,7 @@ public class Fil {
 			}
 
 			innfil.close();
+ 
 
 		} catch (IOException e) {
 			System.out.println("Feil ved lesing av fil: " + e);

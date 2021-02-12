@@ -8,11 +8,11 @@ public class Film {
 	private int lanseringsaar;
 	private Sjanger sjanger;
 	private String filmselskap;
-	
+
 	public Film() {
 		
 	}
-	
+
 	public Film(int filmnr, String produsent, String tittel, int lanseringsaar, String sjanger, String filmselskap) {
 		this.filmnr = filmnr;
 		this.produsent = produsent;
@@ -21,7 +21,7 @@ public class Film {
 		this.sjanger = Sjanger.finnSjanger(sjanger);
 		this.filmselskap = filmselskap;
 	}
-	
+
 	public int getFilmnr() {
         return filmnr;
     }
@@ -71,7 +71,8 @@ public class Film {
     }
     
     public String toString() {
-    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i året " +
+    	return sjanger + " filmen " + tittel + " ble laget av filmselskapet " + filmselskap + " i ï¿½ret " +
     	lanseringsaar + ",\n og ble produsert av " + produsent;
     }
+
 }

@@ -2,7 +2,6 @@ package no.hvl.dat102.klient;
 
 import javax.swing.JOptionPane;
 
-import no.hvl.dat102.Film;
 import no.hvl.dat102.Filmarkiv;
 import no.hvl.dat102.Tekstgrensesnitt;
 import no.hvl.dat102.adt.FILMarkivADT;
@@ -12,6 +11,7 @@ public class Meny {
 
 	private Tekstgrensesnitt tekstgr;
 	private FILMarkivADT filmer;
+
 	private String filnavn = null;
 
 	public Meny(FILMarkivADT filmer) {
@@ -22,12 +22,12 @@ public class Meny {
 	public void start() {
 
 		int velgFil = Integer.parseInt(
-				tekstgr.userInput("Skriv inn 1 for å opprette en ny fil, eller 2 for å velge en fil som finnes fra før av"));
+				tekstgr.userInput("Skriv inn 1 for Ã¥ opprette en ny fil, eller 2 for Ã¥ velge en fil som finnes fra fÃ¸r av"));
 
 		newOrOldArchive(velgFil);
 
 		int brukervalg = Integer.parseInt(tekstgr.userInput("1 - Legg til film \n2 - Vis informasjon om film "
-				+ "\n3 - Søk etter tittel \n4 - Filmer av produsent \n5 - Sjanger informasjon"));
+				+ "\n3 - SÃ¸k etter tittel \n4 - Filmer av produsent \n5 - Sjanger informasjon"));
 
 		userChoice(brukervalg);
 	}
