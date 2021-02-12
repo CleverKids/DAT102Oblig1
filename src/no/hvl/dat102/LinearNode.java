@@ -13,4 +13,20 @@ public class LinearNode<T> {
 		neste = null;
 		element = elem;
 	}
+	
+	public LinearNode<T> getNeste(){
+		return neste;
+	}
+	
+	public void setNeste(LinearNode<T> node) {
+		neste = node;
+	}
+	
+	public T getElement() {
+		return element;
+	}
+	
+	public void setElement(T elem) {
+		element = elem;
+	}
 }
